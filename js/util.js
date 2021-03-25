@@ -8,7 +8,7 @@ function getRandomInt(min, max) {
 function startTimer() {
     gInterval = setInterval(function () {
         gGame.secsPassed = gGame.secsPassed + 11;
-        elTimer.innerHTML = (gGame.secsPassed / 1000);
+        elTimer.innerHTML = Math.floor(gGame.secsPassed / 1000);
     }, 10)
 }
 

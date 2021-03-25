@@ -22,7 +22,7 @@ function init() {
     gGame.markedCount = 0
     clearInterval(gInterval);
     gGame.secsPassed = 0;
-    elTimer.innerHTML = '0.000';
+    elTimer.innerHTML = '0';
     mines = []
     gBoard = buildBoard();
     setMinesNegsCount(gBoard);
