@@ -12,11 +12,14 @@ var gGame = {
     markedCount: 0,
     secsPassed: 0,
 }
+
+var gLives = 3;
 var elTimer = document.querySelector('.timer');
 var gInterval;
 var mines = [];
 
 function init() {
+    gLives = 3;
     gGame.isOn = true
     gGame.shownCount = 0
     gGame.markedCount = 0
@@ -25,6 +28,7 @@ function init() {
     elTimer.innerHTML = '0';
     mines = []
     gBoard = buildBoard();
+    document.querySelector('p span').innerText = gLives
     setMinesNegsCount(gBoard);
     renderBoard(gBoard);
 }
@@ -86,22 +90,18 @@ function markCell(elCell, i, j) {
 }
 
 function cellClicked(elCell, i, j) {
-    if (!gGame.isOn) return;
     var cell = gBoard[i][j];
+    if (!gGame.isOn) return;
     if (gGame.isOn) {
         clearInterval(gInterval);
         startTimer()
     }
     if (elCell.classList.contains('marked')) return;
-    if (elCell.classList.contains('mine')) { // game over after clicking a mine
+    if (elCell.classList.contains('mine')) { // game over after 3 steps on a mine
+        gLives--
+        document.querySelector('p span').innerText = gLives
         checkGameOver()
         cell.isShown = true;
-        elCell.classList.add('shown');
-        elCell.classList.add('show-mine');
-        //reveal all mines when clicked
-        //
-        var elBoard = document.querySelector('.game-board');
-        elBoard.classList.add('show-mine')
         renderBoard(gBoard);
     }
     if (!cell.isShown && !cell.isMine && !cell.isMarked) {   // show cells after click
@@ -165,12 +165,14 @@ function expandShown(gBoard, elCell, pos) { // expand negs if not a mine
 }
 
 function checkGameOver() {
-    gGame.isOn = false
-    clearInterval(gInterval);
-    gGame.secsPassed = 0;
-    var elImg = document.querySelector('.smiley')
-    elImg.src = ('./img/lose.png');
-    console.log('You lose');
+    if (gLives === 0) {
+        gGame.isOn = false
+        clearInterval(gInterval);
+        gGame.secsPassed = 0;
+        var elImg = document.querySelector('.smiley')
+        elImg.innerHTML = '<img src="./img/lose.png" alt="lose" />'
+    }
+
 }
 
 function checkWin() {
@@ -179,6 +181,8 @@ function checkWin() {
         gGame.isOn = false
         clearInterval(gInterval);
         gGame.secsPassed = 0;
+        var elImg = document.querySelector('.smiley')
+        elImg.innerHTML = '<img src="./img/win.png" alt="lose" />'
     }
 }
 
@@ -194,7 +198,6 @@ function setRandomMines(board) {
                 currCell.isMine = true
                 count++
                 mines.push(currCell)
-                //console.log(mines);
             }
         }
     }

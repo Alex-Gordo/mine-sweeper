@@ -13,6 +13,11 @@ h1 {
     color: rgb(255, 241, 241);
 }
 
+.game-info p {
+    color: red;
+    left: 500px;
+}
+
 .time {
     padding-bottom: 10px;
 }
@@ -74,7 +79,7 @@ h1 {
 }
 
 .show-mine {
-    background-image: url('./img/mine.png');
+    background-image: url('../img/mine.png');
     background-color: red;
 }
 
@@ -85,7 +90,7 @@ h1 {
 }
 
 .marked {
-    background-image: url('./img/flag.png');
+    background-image: url('../img/flag.png');
     background-size: contain;
     background-position-x: center;
     border-radius: 1px;
