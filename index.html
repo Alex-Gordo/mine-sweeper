@@ -6,12 +6,18 @@
   </head>
 
   <body onload="init()">
-    <h1>Minesweeper</h1>
+    <h1>Mine Sweeper</h1>
     <div class="game-info">
-      <div >Time played: <span class="timer">0.000 </span> sec</div>
+      <div class="time">Time played: <span class="timer">0.000 </span> sec</div>
       <button class="smiley" onclick="init()">
         <img src="./img/smile.png" alt="emoji" />
       </button>
+    </div>
+
+    <div class="diff-container">
+      <button class="easy" onclick="easy()">Easy</button>
+      <button class="medium" onclick="medium()">Medium</button>
+      <button class="hard" onclick="hard()">Hard</button>
     </div>
 
     <table class="center">

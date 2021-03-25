@@ -1,22 +1,51 @@
 body {
     background-color: black;
     text-align: center;
+    background: linear-gradient(to bottom, #141001, #463030) no-repeat center / cover fixed;
+    font-family: 'Questrial', sans-serif;
 }
 
 h1 {
-    color: aquamarine;
+    color: rgb(255, 246, 127);
 }
 
 .game-info {
-    color: brown;
+    color: rgb(255, 241, 241);
+}
+
+.time {
+    padding-bottom: 10px;
 }
 
 .timer {
-    color: green;
+    color: rgb(133, 175, 133);
 }
 
 .smiley {
-    background-color: black;
+    background-color: #141001;
+    background-size: contain;
+    background-position-x: center;
+}
+
+.diff-container {
+    padding-top: 20px;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.diff-container button{
+    margin: 5px;
+    padding: 5px;
+    min-width: 2em;
+    border: none;
+    background-color: rgb(238, 211, 211);
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .45);
+    transition: .3s ease-in-out;
+    cursor: pointer;
+    text-align: center;
+    outline-color: rgb(255, 112, 112);
+    transition: .3s ease-in-out;
 }
 
 .game-board td {
@@ -25,8 +54,11 @@ h1 {
     font-size: 1.4em;
 }
 
-
 .cell {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .45);
+    transition: .3s ease-in-out;
     content-visibility: hidden;
     text-align: center;
     position: static;
@@ -34,23 +66,20 @@ h1 {
     background-color: gray
 }
 
-
 .shown {
     content-visibility: initial;
 }
 
-
 .show-mine {
     background-image: url('/img/mine.png');
+    background-color: red;
 }
 
 .mine {
-    /* background-image: url('/img/mine.png'); */
     content-visibility: hidden;
     background-size: contain;
     background-position-x: center;
 }
-
 
 .marked {
     background-image: url('/img/flag.png');
@@ -62,4 +91,5 @@ h1 {
 .center {
     margin-left: auto;
     margin-right: auto;
+    padding-top: 20px;
 }
