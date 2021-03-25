@@ -29,6 +29,8 @@ function init() {
     mines = []
     gBoard = buildBoard();
     document.querySelector('p span').innerText = gLives
+    var elImg = document.querySelector('.smiley')
+    elImg.innerHTML = '<img src="./img/smile.png" alt="lose" />'
     setMinesNegsCount(gBoard);
     renderBoard(gBoard);
 }
