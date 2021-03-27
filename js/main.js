@@ -30,7 +30,7 @@ function init() {
     gBoard = buildBoard();
     document.querySelector('p span').innerText = gLives
     var elImg = document.querySelector('.smiley')
-    elImg.innerHTML = '<img src="./img/smile.png" alt="lose" />'
+    elImg.innerHTML = '<img src="./img/smile.png" alt="" />'
     setMinesNegsCount(gBoard);
     renderBoard(gBoard);
 }
@@ -144,6 +144,7 @@ function countNegs(cell) { //count mines around cell and add to DOM
         }
     }
     cell.minesAroundCount = count
+    if (count === 0) cell.minesAroundCount = '' // empty cell if no negs
 }
 
 
@@ -156,7 +157,7 @@ function expandShown(gBoard, elCell, pos) { // expand negs if not a mine
             var cell = gBoard[i][j]
             if (cell.isShown) continue;
             if (cell.isMarked) continue;
-            if (!cell.isMine && !cell.isMarked) {
+            if (!cell.isMine && !cell.isMarked) {   
                 cell.isShown = true;
                 elCell.classList.add('shown');
                 gGame.shownCount++
@@ -184,7 +185,7 @@ function checkWin() {
         clearInterval(gInterval);
         gGame.secsPassed = 0;
         var elImg = document.querySelector('.smiley')
-        elImg.innerHTML = '<img src="./img/win.png" alt="lose" />'
+        elImg.innerHTML = '<img src="./img/win.png" alt="win" />'
     }
 }
 

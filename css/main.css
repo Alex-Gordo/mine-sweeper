@@ -3,10 +3,13 @@ body {
     text-align: center;
     background: linear-gradient(to bottom, #141001, #463030) no-repeat center / cover fixed;
     font-family: 'Questrial', sans-serif;
+    text-shadow: 0 0 7px whitesmoke;
 }
 
 h1 {
-    color: rgb(255, 246, 127);
+    color: #ccc;
+    font-size: 100px;
+    margin: 0px;
 }
 
 .game-info {
@@ -15,11 +18,16 @@ h1 {
 
 .game-info p {
     color: red;
-    left: 500px;
+    position: relative;
+    right: 200px;
+    top: 120px;
+    font-size: 30px;
+    margin: 0px;
 }
 
 .time {
     padding-bottom: 10px;
+    font-size: 20px;
 }
 
 .timer {
@@ -36,12 +44,12 @@ h1 {
 }
 
 .diff-container {
-    padding-top: 20px;
     font-size: 1.4em;
     text-align: center;
+    padding: 10px;
 }
 
-.diff-container button{
+.diff-container button {
     margin: 5px;
     padding: 5px;
     min-width: 2em;
@@ -66,7 +74,7 @@ h1 {
     border: none;
     border-radius: 5px;
     box-shadow: 0 0 8px rgba(0, 0, 0, .45);
-    transition: .3s ease-in-out;
+    transition: transform .2s;
     content-visibility: hidden;
     text-align: center;
     position: static;
@@ -76,6 +84,8 @@ h1 {
 
 .shown {
     content-visibility: initial;
+    background: #ccc;
+    color: rgb(76, 12, 250);
 }
 
 .show-mine {
@@ -94,6 +104,12 @@ h1 {
     background-size: contain;
     background-position-x: center;
     border-radius: 1px;
+}
+
+.cell:hover {
+    transform: scale(1.03);
+    background: #ccc;
+    color: #fff;
 }
 
 .center {
