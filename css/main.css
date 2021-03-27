@@ -41,12 +41,14 @@ h1 {
     background-color: #141001;
     background-size: contain;
     background-position-x: center;
+    cursor: pointer;
 }
 
 .diff-container {
     font-size: 1.4em;
     text-align: center;
     padding: 10px;
+    
 }
 
 .diff-container button {
@@ -62,6 +64,7 @@ h1 {
     text-align: center;
     outline-color: rgb(255, 112, 112);
     transition: .3s ease-in-out;
+
 }
 
 .game-board td {
@@ -90,7 +93,7 @@ h1 {
 
 .show-mine {
     background-image: url('../img/mine.png');
-    background-color: red;
+    background-color: rgb(175, 11, 11);
 }
 
 .mine {
@@ -104,6 +107,7 @@ h1 {
     background-size: contain;
     background-position-x: center;
     border-radius: 1px;
+    background-color: #ccc;
 }
 
 .cell:hover {

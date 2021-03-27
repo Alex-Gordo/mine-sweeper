@@ -1,4 +1,7 @@
 'use strict'
+var cellSound = new Audio('sound/click.wav');
+var mineSound = new Audio('sound/wrong.wav');
+var markSound = new Audio('sound/mark.wav');
 
 var gBoard;
 var gLevel = {
@@ -84,9 +87,15 @@ function markCell(elCell, i, j) {
     var cell = gBoard[i][j];
     if (!gGame.isOn) return;
     if (cell.isShown) return;
-    if (cell.isMarked) gGame.markedCount--
-    elCell.classList.toggle('marked');
-    cell.isMarked = true
+    if (cell.isMarked) {
+        gGame.markedCount--
+        elCell.classList.remove('marked');
+        cell.isMarked = false
+    } else {
+        elCell.classList.add('marked');
+        cell.isMarked = true
+        markSound.play()
+    }
     if (cell.isMine && cell.isMarked) gGame.markedCount++
     checkWin()
 }
@@ -100,6 +109,7 @@ function cellClicked(elCell, i, j) {
     }
     if (elCell.classList.contains('marked')) return;
     if (elCell.classList.contains('mine')) { // game over after 3 steps on a mine
+        mineSound.play()
         gLives--
         document.querySelector('p span').innerText = gLives
         checkGameOver()
@@ -107,6 +117,7 @@ function cellClicked(elCell, i, j) {
         renderBoard(gBoard);
     }
     if (!cell.isShown && !cell.isMine && !cell.isMarked) {   // show cells after click
+        cellSound.play()
         cell.isShown = true;
         elCell.classList.add('shown');
         gGame.shownCount++
@@ -157,7 +168,7 @@ function expandShown(gBoard, elCell, pos) { // expand negs if not a mine
             var cell = gBoard[i][j]
             if (cell.isShown) continue;
             if (cell.isMarked) continue;
-            if (!cell.isMine && !cell.isMarked) {   
+            if (!cell.isMine && !cell.isMarked) {
                 cell.isShown = true;
                 elCell.classList.add('shown');
                 gGame.shownCount++
@@ -179,8 +190,8 @@ function checkGameOver() {
 }
 
 function checkWin() {
+    if (gGame.markedCount > gLevel.MINES) return;
     if ((gGame.markedCount === gLevel.MINES) || (gGame.shownCount === (gLevel.SIZE ** 2 - gLevel.MINES))) {
-        console.log('You win');
         gGame.isOn = false
         clearInterval(gInterval);
         gGame.secsPassed = 0;
