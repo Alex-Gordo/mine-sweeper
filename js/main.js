@@ -5,8 +5,8 @@ var markSound = new Audio('sound/mark.wav');
 
 var gBoard;
 var gLevel = {
-    SIZE: 4,
-    MINES: 2
+    SIZE: 8,
+    MINES: 12
 }
 
 var gGame = {
@@ -185,6 +185,7 @@ function checkGameOver() {
         gGame.secsPassed = 0;
         var elImg = document.querySelector('.smiley')
         elImg.innerHTML = '<img src="./img/lose.png" alt="lose" />'
+        revealMines(gBoard);
     }
 
 }
@@ -197,6 +198,7 @@ function checkWin() {
         gGame.secsPassed = 0;
         var elImg = document.querySelector('.smiley')
         elImg.innerHTML = '<img src="./img/win.png" alt="win" />'
+        revealAllCells(gBoard)
     }
 }
 
@@ -215,4 +217,22 @@ function setRandomMines(board) {
             }
         }
     }
+}
+
+function revealMines() {
+    //check mines array and reveal all mines
+    for (var i = 0; i < mines.length; i++) {
+        mines[i].isShown = true
+    }
+    renderBoard(gBoard)
+}
+
+function revealAllCells(board) {
+    for (var i = 0; i < gLevel.SIZE; i++) {
+        for (var j = 0; j < gLevel.SIZE; j++) {
+            var cell = board[i][j]
+            cell.isShown = true
+        }
+    }
+    renderBoard(board)
 }
